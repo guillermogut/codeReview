@@ -40,19 +40,22 @@ testCases = ["(",
              "[[]",
              "[{()}]",
              "{",
-             "[{[{{"]
+             "[{[{{",
+
+             "()[]{}"]
 
 
 def isMatch(c1,c2)->bool:
 
 
-    left = ["[","{","("]
-    right = ["]","}",")"]
+    left = {"[":1,"{":2,"(":3}
+    right = {"]":1,"}":2,")":3}
 
     if c1 in left and c2 in right:
-
-        return True
-
+        if left[c1] == right[c2]:
+            return True
+        else:
+            return False
     else:
 
         return False
@@ -68,7 +71,8 @@ def validParentheses(str1)-> bool:
     stack.append(str1[0])
     for i in range(1,len(str1)):
 
-        if isMatch(stack[-1],str1[i]):
+
+        if len(stack) >0 and isMatch(stack[-1],str1[i]):
 
             stack.pop()
 
