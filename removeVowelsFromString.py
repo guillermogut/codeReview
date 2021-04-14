@@ -10,14 +10,14 @@
 
 
 #test cases
-case1 = "a"
-case2 = "ab"
-case3 = "g"
-case4 = "aaaaab"
-case5 = "bbbbba"
-case6 = "abababa"
-
-testList = [case1,case2,case3,case4,case5,case5]
+testList = [
+    ("a", ""),
+    ("ab", "b"),
+    ("g", "g"),
+    ("aaaaab", "b"),
+    ("bbbbba", "bbbbb"),
+    ("abababa", "bbb")
+]
 
 # this problem requires us to modify a string and return it,but python strings are immutable
 # a new string may be required for us to skip vowels
@@ -55,9 +55,10 @@ def removeVowels(str1)->str:
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
 
-    for x in range(len(testList)):
-
-        print("case "+str(x+1)+": "+ removeVowels(testList[x]))
+    for (test_in, expected) in testList:
+        result = removeVowels(test_in)
+        result_str = "passed" if result == expected else "FAILED"
+        print(result_str, ' test_in: ', test_in, ' result: ', result)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
 
